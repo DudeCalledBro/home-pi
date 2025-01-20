@@ -1,0 +1,12 @@
+all:
+  hosts:
+    homeassistant.home.arpa:
+      ansible_user: pi
+
+  vars:
+    # Specifies the homeassistant docker image to be used.
+    homeassistant_docker_image: homeassistant/home-assistant:latest
+
+    # The Docker image to use for deploying the Mosquitto broker.
+    # This should specify the image name and tag (e.g., 'eclipse-mosquitto:latest') for the container.
+    mosquitto_docker_image: eclipse-mosquitto:latest

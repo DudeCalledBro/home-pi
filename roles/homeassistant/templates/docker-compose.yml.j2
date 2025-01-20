@@ -1,0 +1,22 @@
+{{ ansible_managed | comment }}
+---
+services:
+  homeassistant:
+    image: "{{ homeassistant_docker_image }}"
+    container_name: homeassistant
+    restart: unless-stopped
+    privileged: true
+    logging:
+      driver: json-file
+      options:
+        max-size: "100m"
+        max-file: "10"
+    environment:
+    {%- for item in (homeassistant_docker_environment | dict2items) %}
+      {{ item.key }}: "{{ item.value }}"
+    {%- endfor %}
+    network_mode: host
+    volumes:
+    - "/run/dbus:/run/dbus:ro"
+    - "/etc/localtime:/etc/localtime:ro"
+    - "{{ homeassistant_docker_path }}/config:/config:rw"

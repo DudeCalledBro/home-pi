@@ -1,0 +1,16 @@
+# Specifies the homeassistant docker image to be used.
+homeassistant_docker_image: homeassistant/home-assistant:latest
+
+# Specifies the homeassistant deployment path, owner and group.
+homeassistant_docker_path: /opt/homeassistant
+homeassistant_docker_owner: root
+homeassistant_docker_group: root
+
+# Define environment variables for the homeassistant container.
+homeassistant_docker_environment:
+  TZ: "Europe/Berlin"
+
+# Define homeassistant configuration (configuration.yaml)
+homeassistant_docker_config: |
+  # Loads default set of integrations. Do not remove.
+  default_config:

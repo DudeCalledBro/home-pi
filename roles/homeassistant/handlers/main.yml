@@ -1,0 +1,7 @@
+- name: Restart homeassistant container
+  ansible.builtin.command: >-
+    docker compose --ansi never --progress plain restart
+  args:
+    chdir: "{{ homeassistant_docker_path }}"
+  changed_when: true
+  listen: restart homeassistant

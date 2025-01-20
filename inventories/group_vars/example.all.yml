@@ -1,0 +1,13 @@
+# Path to the TLS certificate file. The certificate is loaded from the 'certs' directory in the inventory folder.
+nginx_docker_tls_crt: "{{ lookup('ansible.builtin.file', inventory_dir + '/files/tls.crt') }}"
+
+# Path to the TLS private key file. The private key is loaded from the 'certs' directory in the inventory folder.
+nginx_docker_tls_key: "{{ lookup('ansible.builtin.file', inventory_dir + '/files/tls.key') }}"
+
+# Define homeassistant configuration (configuration.yaml)
+homeassistant_docker_config: "{{ lookup('ansible.builtin.file', inventory_dir + '/files/configuration.yaml') }}"
+
+# Credentials for Mosquitto MQTT broker authentication
+# docker run -it mosquitto mosquitto_passwd -b /tmp/password.txt username password
+mosquitto_docker_credentials: |
+  <username>:<password>

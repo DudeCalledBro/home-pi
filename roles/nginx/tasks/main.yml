@@ -1,0 +1,62 @@
+- name: Create nginx directory
+  ansible.builtin.file:
+    path: "{{ item }}"
+    owner: "{{ nginx_docker_owner }}"
+    group: "{{ nginx_docker_group }}"
+    state: directory
+    mode: 0755
+  loop:
+  - "{{ nginx_docker_path }}"
+  - "{{ nginx_docker_path }}/certs"
+
+- name: Create nginx tls certificate
+  ansible.builtin.copy:
+    content: "{{ nginx_docker_tls_crt }}"
+    dest: "{{ nginx_docker_path }}/certs/tls.crt"
+    owner: "{{ nginx_docker_owner }}"
+    group: "{{ nginx_docker_group }}"
+    mode: 0640
+  notify: restart nginx
+
+- name: Create nginx tls certificate key
+  ansible.builtin.copy:
+    content: "{{ nginx_docker_tls_key }}"
+    dest: "{{ nginx_docker_path }}/certs/tls.key"
+    owner: "{{ nginx_docker_owner }}"
+    group: "{{ nginx_docker_group }}"
+    mode: 0640
+  notify: restart nginx
+
+- name: Create nginx docker config
+  ansible.builtin.template:
+    src: default.conf.j2
+    dest: "{{ nginx_docker_path }}/default.conf"
+    owner: "{{ nginx_docker_owner }}"
+    group: "{{ nginx_docker_group }}"
+    trim_blocks: false
+    mode: 0644
+  notify: restart nginx
+
+- name: Create nginx docker compose deployment
+  ansible.builtin.template:
+    src: docker-compose.yml.j2
+    dest: "{{ nginx_docker_path }}/docker-compose.yml"
+    owner: "{{ nginx_docker_owner }}"
+    group: "{{ nginx_docker_group }}"
+    trim_blocks: false
+    mode: 0644
+  notify: restart nginx
+
+- name: Validate nginx docker compose deployment
+  ansible.builtin.command: docker compose config --quiet
+  args:
+    chdir: "{{ nginx_docker_path }}"
+  changed_when: false
+
+- name: Startup nginx docker compose deployment
+  ansible.builtin.command: >-
+    docker compose --ansi never --progress plain up --detach
+  args:
+    chdir: "{{ nginx_docker_path }}"
+  register: nginx_container_startup
+  changed_when: "'Started' in nginx_container_startup.stdout"

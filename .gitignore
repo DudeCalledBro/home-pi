@@ -1,0 +1,27 @@
+# Ignore all YAML files in inventories, but track specific ones.
+inventories/*.yml
+!inventories/example.hosts.yml
+
+# Ignore all YAML files in group_vars, but track specific ones.
+inventories/group_vars/*.yml
+!inventories/group_vars/example.*.yml
+
+# Configuration files.
+inventories/files/*
+!inventories/files/.gitkeep
+
+# Ansible retry files.
+*.retry
+
+# Python cache files.
+__pycache__/
+*.pyc
+
+# macOS system files.
+.DS_Store
+
+# Editor and IDE files.
+.vscode/
+.idea/
+*.swp
+*.swo

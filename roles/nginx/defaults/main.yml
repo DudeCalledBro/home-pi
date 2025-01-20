@@ -1,0 +1,11 @@
+# Specifies the nginx docker image to be used.
+nginx_docker_image: nginx:alpine
+
+# Specifies the deployment path, owner and group for nginx.
+nginx_docker_path: /opt/nginx
+nginx_docker_owner: root
+nginx_docker_group: root
+
+# Specify nginx tls certificates.
+nginx_docker_tls_crt: ""
+nginx_docker_tls_key: ""

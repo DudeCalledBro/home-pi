@@ -1,0 +1,18 @@
+# The Docker image to use for deploying the Mosquitto broker.
+# This should specify the image name and tag (e.g., 'eclipse-mosquitto:latest') for the container.
+mosquitto_docker_image: eclipse-mosquitto:latest
+
+# The directory on the host machine where Mosquitto-related files will be stored.
+# This is the base path for the Mosquitto Docker container mount.
+mosquitto_docker_path: /opt/mosquitto
+
+# The owner of the Mosquitto deployment directory on the host system.
+# This user will have ownership of files and directories created within the mosquitto_docker_path.
+mosquitto_docker_owner: root
+
+# The group associated with the Mosquitto deployment directory on the host system.
+# This defines which group has access and permissions to the files within the mosquitto_docker_path.
+mosquitto_docker_group: root
+
+# Credentials for Mosquitto MQTT broker authentication
+mosquitto_docker_credentials: ""

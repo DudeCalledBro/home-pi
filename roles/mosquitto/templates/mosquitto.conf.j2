@@ -1,0 +1,16 @@
+{{ ansible_managed | comment }}
+
+# Listener
+listener 1883 0.0.0.0
+
+# Save persistent message data to disk.
+persistence true
+
+# Location for persistent database.
+persistence_location /mosquitto/data/
+
+# Clients can connect without providing credentials.
+allow_anonymous false
+
+# Control access to the broker using a password file.
+password_file /mosquitto/config/password.txt

@@ -1,0 +1,3 @@
+repository:
+  description: "Pi-based home server running Home Assistant and essential utilities, powered by Ansible. Centralized infrastructure for home automation, providing seamless smart home integration."
+  topics: ansible, automation, docker-compose, homeassistant

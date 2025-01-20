@@ -1,0 +1,12 @@
+- name: Setup Home Assistant
+  hosts: all
+  pre_tasks:
+  - name: Ensure APT package cache is up to date
+    ansible.builtin.apt:
+      update_cache: true
+      cache_valid_time: 3600
+    when: ansible_facts.os_family == "Debian"
+
+  roles:
+  - role: homeassistant
+  - role: nginx
