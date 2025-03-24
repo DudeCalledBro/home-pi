@@ -1,3 +1,4 @@
+---
 # The Docker image to use for deploying the Mosquitto broker.
 # This should specify the image name and tag (e.g., 'eclipse-mosquitto:latest') for the container.
 mosquitto_docker_image: eclipse-mosquitto:latest

@@ -1,0 +1,26 @@
+{{ ansible_managed | comment }}
+---
+services:
+  mosquitto:
+    image: "{{ mosquitto_docker_image }}"
+    container_name: mosquitto
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: "100m"
+        max-file: "10"
+    networks:
+      - back-tier
+    ports:
+      - 1883:1883
+      - 9001:9001
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - {{ mosquitto_docker_path }}/data:/mosquitto/data:rw
+      - {{ mosquitto_docker_path }}/mosquitto.conf:/mosquitto/config/mosquitto.conf:rw
+      - {{ mosquitto_docker_path }}/password.txt:/mosquitto/config/password.txt:rw
+
+networks:
+  back-tier:
+    name: homeassistant-back-tier
