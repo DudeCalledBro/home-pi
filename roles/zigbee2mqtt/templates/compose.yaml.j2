@@ -1,0 +1,26 @@
+{{ ansible_managed | comment }}
+---
+services:
+  zigbee2mqtt:
+    image: {{ zigbee2mqtt_docker_image }}
+    container_name: zigbee2mqtt
+    restart: unless-stopped
+    logging:
+      driver: json-file
+      options:
+        max-size: "100m"
+        max-file: "10"
+    environment:
+      TZ: {{ zigbee2mqtt_docker_timezone }}
+    networks:
+      - back-tier
+    ports:
+      -  127.0.0.1:8080:8080
+    volumes:
+      - /run/udev:/run/udev:ro
+      - /etc/localtime:/etc/localtime:ro
+      - {{ zigbee2mqtt_docker_path }}/zigbee2mqtt:/app/data:rw
+
+networks:
+  back-tier:
+    name: homeassistant-back-tier

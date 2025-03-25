@@ -1,0 +1,7 @@
+---
+- name: Restart zigbee2mqtt docker compose deployment
+  ansible.builtin.command:
+    cmd: docker compose --ansi never --progress plain restart
+    chdir: "{{ zigbee2mqtt_docker_path }}"
+  changed_when: true
+  listen: restart zigbee2mqtt container

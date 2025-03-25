@@ -1,0 +1,33 @@
+---
+# Path to the Zigbee2MQTT installation directory
+zigbee2mqtt_docker_path: /opt/zigbee2mqtt
+
+# Owner of the Zigbee2MQTT files and directories
+zigbee2mqtt_docker_owner: root
+
+# Group assigned to the Zigbee2MQTT files and directories
+zigbee2mqtt_docker_group: root
+
+# Docker container image for Zigbee2MQTT (latest version)
+zigbee2mqtt_docker_image: koenkk/zigbee2mqtt:latest
+
+# Timezone setting for the Zigbee2MQTT container (adjust based on your location)
+zigbee2mqtt_docker_timezone: Europe/Berlin
+
+# MQTT base topic used by Zigbee2MQTT to publish and subscribe to messages
+zigbee2mqtt_docker_mqtt_base_topic: zigbee2mqtt
+
+# MQTT server address (use 'mqtt://<hostname>' or IP address)
+zigbee2mqtt_docker_mqtt_server: mqtt://mosquitto
+
+# Serial port for the Zigbee adapter (set to the appropriate address)
+zigbee2mqtt_docker_serial_port: tcp://127.0.0.1:6638
+
+# Type of Zigbee adapter being used (e.g., 'zstack', 'deconz', etc.)
+zigbee2mqtt_docker_serial_adapter: zstack
+
+# Enable the Zigbee2MQTT frontend (set to true to access the web interface)
+zigbee2mqtt_docker_frontend_enabled: true
+
+# Enable the Home Assistant integration for Zigbee2MQTT (set to true to enable)
+zigbee2mqtt_docker_homeassistant_enabled: true
