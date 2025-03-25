@@ -6,14 +6,20 @@ mqtt:
   server: {{ zigbee2mqtt_docker_mqtt_server }}
   # Optional: MQTT base topic for Zigbee2MQTT MQTT messages (default: zigbee2mqtt)
   base_topic: {{ zigbee2mqtt_docker_mqtt_base_topic }}
+  {%- if zigbee2mqtt_docker_mqtt_username | length and zigbee2mqtt_docker_mqtt_password | length %}
   # Optional: MQTT server authentication user (default: nothing)
   user: {{ zigbee2mqtt_docker_mqtt_username }}
   # Optional: MQTT server authentication password (default: nothing)
   password: {{ zigbee2mqtt_docker_mqtt_password }}
+  {%- endif %}
 serial:
   port: {{ zigbee2mqtt_docker_serial_port }}
   adapter: {{ zigbee2mqtt_docker_serial_adapter }}
 frontend:
   enabled: {{ zigbee2mqtt_docker_frontend_enabled | bool | lower }}
+  {%- if zigbee2mqtt_docker_frontend_auth_token | length %}
+  # Optional, enables authentication, disabled by default, cleartext (no hashing required)
+  auth_token: {{ zigbee2mqtt_docker_frontend_auth_token }}
+  {%- endif %}
 homeassistant:
   enabled: {{ zigbee2mqtt_docker_homeassistant_enabled | bool | lower }}

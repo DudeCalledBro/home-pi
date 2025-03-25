@@ -29,5 +29,8 @@ zigbee2mqtt_docker_serial_adapter: zstack
 # Enable the Zigbee2MQTT frontend (set to true to access the web interface)
 zigbee2mqtt_docker_frontend_enabled: true
 
+# Enable the Zigbee2MQTT frontend authentication
+zigbee2mqtt_docker_frontend_auth_token: ""
+
 # Enable the Home Assistant integration for Zigbee2MQTT (set to true to enable)
 zigbee2mqtt_docker_homeassistant_enabled: true

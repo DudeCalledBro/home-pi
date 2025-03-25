@@ -16,6 +16,7 @@
     dest: "{{ zigbee2mqtt_docker_path }}/zigbee2mqtt/configuration.yaml"
     owner: "{{ zigbee2mqtt_docker_owner }}"
     group: "{{ zigbee2mqtt_docker_group }}"
+    trim_blocks: false
     mode: '0644'
   notify: restart zigbee2mqtt container
 
